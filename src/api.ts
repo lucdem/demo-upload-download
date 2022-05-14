@@ -12,7 +12,6 @@ import path from 'path'
 const app = express()
 const sizeLimit = 300 * 1024 * 1024
 
-
 const temp_dir = path.join(os.tmpdir(), 'pixlog-demo')
 if(!fs.existsSync(temp_dir)){
 	fs.mkdirSync(temp_dir)
@@ -92,4 +91,7 @@ app.post('/api/files', (req, res) => {
 	});
 })
 
-app.listen(process.env.PORT || 3001)
+// heroku na versão gratuita peridicamente coloca a aplicação para dormir a limpa o espaço em disco utilizado
+// como esta aplicação tem fins apenas demonstrativos, quando a aplicação acorda a tabela no banco de dados
+// é limpada para não manter referencias a arquivos que ja foram apagados do disco 
+Database.truncate().then(() => app.listen(process.env.PORT || 3001))

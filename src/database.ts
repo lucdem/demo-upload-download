@@ -24,6 +24,10 @@ function _initPool(){
 export class Database{
 	static _dbPool = _initPool()
 
+	static async truncate(){
+		await Database._dbPool.query("TRUNCATE file")
+	}
+
 	static async selectFile(id: number): Promise<File>{
 		let query = {
 			text: 'SELECT id, name, path, ip, size FROM file WHERE id = $1',
