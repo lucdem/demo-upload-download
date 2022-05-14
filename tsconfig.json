@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"esModuleInterop": true,
+		"target": "ES2022",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"isolatedModules": true,
+		"lib": ["ESNext"],
+		"sourceMap": true
+	}
+}
